@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Google 계정으로 로그인</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #202124;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .info {
+            font-size: 14px;
+            color: #5f6368;
+            margin-top: 20px;
+        }
+        .links {
+            margin-top: 15px;
+            font-size: 12px;
+        }
+        .links a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Google 계정으로 로그인</h1>
+        <div id="g_id_onload"
+             data-client_id="647169102258-u05onhgthgvu7tqqe4ns4quu3ftug2u6.apps.googleusercontent.com"
+             data-context="signin"
+             data-ux_mode="popup"
+             data-callback="handleCredentialResponse"
+             data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-size="large"
+             data-theme="outline"
+             data-text="signin_with"
+             data-shape="rectangular"
+             data-logo_alignment="left">
+        </div>
+        <div class="info">
+            계속하면 Google에서 이메일 주소를 gnfortress.com 과 공유합니다.
+        </div>
+        <div class="links">
+            <a href="privacy.html" onclick="alert('Gnfortress의 개인정보처리방침 페이지로 이동합니다.')">개인정보처리방침</a> |
+            <a href="servicelegal.html" onclick="alert('Gnfortress의 서비스 약관 페이지로 이동합니다.')">서비스 약관</a>
+        </div>
+    </div>
+
+    <script>
+        function handleCredentialResponse(response) {
+            if (response.credential) {
+                console.log("ID 토큰: " + response.credential);
+                window.location.href = "https://gdncloud-add.web.app/";
+            } else {
+                console.log("로그인 실패");
+                window.location.href = "https://gdncloud.com";
+            }
+        }
+
+        function handleError() {
+            console.log("로그인 오류 또는 취소");
+            window.location.href = "https://gdncloud.com";
+        }
+
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "647169102258-u05onhgthgvu7tqqe4ns4quu3ftug2u6.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.prompt((notification) => {
+                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                    handleError();
+                }
+            });
+        };
+    </script>
+</body>
+</html>

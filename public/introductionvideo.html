@@ -30,6 +30,101 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+       <!-- CSS styles go here -->
+       <style>
+        /* 기본 스타일 */
+        .week-container {
+            margin-bottom: 2rem;
+            padding: 0 15px;
+        }
+        
+        .week-container img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .weekday-grid {
+            display: grid;
+            gap: 20px;
+            padding: 0 15px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        
+        .weekday-item {
+            width: 100%;
+        }
+        
+        .weekday-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .weekday-label {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        /* 호버 효과 */
+        .weekday-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 반응형 그리드 설정 */
+        @media (min-width: 768px) {
+            .weekday-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .friday-item {
+                grid-column: span 2;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .weekday-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .week-container {
+                margin-bottom: 1.5rem;
+            }
+            
+            .weekday-label {
+                font-size: 14px;
+            }
+            
+            .friday-item {
+                width: 100%;
+            }
+            
+            .week-container img,
+            .weekday-image {
+                max-width: 100%;
+            }
+        }
+        
+        /* 컨테이너 패딩 조정 */
+        @media (max-width: 575px) {
+            .container {
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+        }
+        </style>
 </head>
 
 <body>
@@ -47,8 +142,18 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="m-0"><i class="fa fa-search me-2"></i>Gn<span class="fs-5">fortress</span></h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                    <h1 class="m-0 d-flex flex-column align-items-center">
+                        <img src="img/GNF_white2.png" alt="Logo" class="logo-image" style="width: 100px; height: auto; max-width: none;">
+                        <span style="font-size: 1rem;">Gnfortress</span>
+                    </h1>
+                    
+                    <style>
+                        .logo-image {
+                            width: 100px !important;
+                            height: auto !important;
+                            max-width: none !important;
+                        }
+                    </style>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
@@ -135,20 +240,56 @@
                             <!-- <source src="gdncloud.webm" type="video/webm"> -->
                         </video>
                     </div>
-                </div>
-                <!-- <div class="col-lg-12 mt-4 text-center">
-                    <img class="img-fluid" src="img/gdncloud1.png" alt="GDN Cloud 1" style="max-width: 80%;">
-                </div>
-                <div class="col-lg-9">
-                    <h1 class="mb-4">" GDN Cloud 장점</h1>
-                </div> -->
-                <!-- <div class="col-lg-12 mt-4 text-center">
-                    <img class="img-fluid" src="img/gdncloud2.png" alt="GDN Cloud 2" style="max-width: 80%;">
-                </div> -->
-                <div class="col-lg-12 mt-4">
-                    <a class="btn btn-primary rounded-pill py-3 px-5" href="GoogleAuth.html" target="_blank">Gnfortress 담당자 연결</a>
+                    <div class="col-lg-12 mt-4">
+                        <a class="btn btn-primary rounded-pill py-3 px-5" href="GoogleAuth.html" target="_blank">Gnfortress 담당자 연결</a>
                     
+                        <div style="margin-bottom: 20px;"></div>       
+                               
+                    </div>
+                    <div class="container-xxl bg-white p-0">
+                        <div class="container px-lg-5 text-center">
+                            <div class="col-lg-12 mt-4 text-center">
+                                <!-- Week container -->
+                                <div class="week-container">
+                                    <img src="img/002.jpg" alt="Full Week (월화수목금)" class="week-image">
+                                    <div class="weekday-label">매일매일 Gnfortress 클라우드보안</div>
+                                </div>
+                    
+                                <!-- Weekday grid -->
+                                <div class="weekday-grid">
+                                    <!-- Monday -->
+                                    <div class="weekday-item">
+                                        <img src="img/003.jpg" alt="월요일" class="weekday-image">
+                                        <div class="weekday-label">월요일 - 월드 클라우드 시큐리티</div>
+                                    </div>
+                                    <!-- Tuesday -->
+                                    <div class="weekday-item">
+                                        <img src="img/004.jpg" alt="화요일" class="weekday-image">
+                                        <div class="weekday-label">화요일 - 화끈한 데이터 보호</div>
+                                    </div>
+                                    <!-- Wednesday -->
+                                    <div class="weekday-item">
+                                        <img src="img/005.jpg" alt="수요일" class="weekday-image">
+                                        <div class="weekday-label">수요일 - 수 많은 위협을 막아내는</div>
+                                    </div>
+                                    <!-- Thursday -->
+                                    <div class="weekday-item">
+                                        <img src="img/006.jpg" alt="목요일" class="weekday-image">
+                                        <div class="weekday-label">목요일 - 목표는 데이터 무결성</div>
+                                    </div>
+                                    <!-- Friday -->
+                                    <div class="weekday-item friday-item">
+                                        <img src="img/007.jpg" alt="금요일" class="weekday-image">
+                                        <div class="weekday-label">금요일 - 금고처럼 단단한 보안</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+    
+  
             </div>
         </div>
     </div>
